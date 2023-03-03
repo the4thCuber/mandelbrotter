@@ -1,0 +1,13 @@
+Thank you for downloading my program. I hope you use it a lot.
+Since I am providing this software free of charge, I ask that you please give me credit for this software.
+Please also provide the GitHub link to the repo (github.com/Iamaprogramador/mandelbrot-zoom).
+If you are interested in seeing how the output of this program appears, see some example videos at my YouTube channel, Iamaprogramador.
+How to use:
+You should be using a Linux machine. If you are not, you can still run this program using a Linux virtual machine.
+If you want to do that, install the app VirtualBox and add a (preferably Debian or Ubuntu-based) Linux machine.
+You should have ffmpeg installed on your system.
+If it is not, simply execute the command 'sudo apt-get install ffmpeg'.
+You can then run the program by running the command './zoom.sh'.
+However, I suggest first opening that file and editing the parameters to your wish.
+Soon I will include better instructions on how to change the coloring.
+For now, though, happy fractals!
