@@ -13,12 +13,19 @@ void mndl(double WIDTH, double HEIGHT, double XCENTER, double YCENTER, double DE
         y = YCENTER + ((yy - HEIGHT / 2) * DELTAPIX); 
 	for (int xx = 0; xx < WIDTH; xx++) {
             x = XCENTER + ((xx - WIDTH / 2) * DELTAPIX);
+	    loop = 0;
+	    if ((x + 1)*(x + 1) + y*y <= .0625) {
+		    loop = max_loop;
+	    }
+	    double q = (x-.25) * (x-.25) + y*y;
+		if (q*(q+(x-.25)) <= .25*y*y) {
+			loop = max_loop;
+		}
             x1 = 0;
             y1 = 0;
             x2 = 0;
 	    y2 = 0;
-            loop = 0;
-            while (loop < max_loop && x2 + y2 <= 4) {
+            while (loop < max_loop && x2 + y2 <= 40) {
                 y1 = 2 * x1 * y1 + y;
                 x1 = x2 - y2 + x;
 		x2 = x1 * x1;
@@ -31,9 +38,9 @@ void mndl(double WIDTH, double HEIGHT, double XCENTER, double YCENTER, double DE
                 fputc(0, fp);
             } else {
 		loop=256*(log(loop)/max);
-                fputc((char)loop % 8 * 32, fp);
-                fputc((char)loop % 4 * 64, fp);
-                fputc((char)loop % 2 * 128, fp);
+                fputc((char)sin(1.25*loop), fp);
+                fputc((char)sin(3.78*loop), fp);
+                fputc((char)sin(7.62*loop), fp);
             }
         }
     }
@@ -57,7 +64,7 @@ int main(int argc, char* argv[]) {
     double max_loop=atoi(argv[8]);
     double zoom=ZOOM_I;
     char filename[15];
-    for (int z = 187; z <= frames; z++) {
+    for (int z = 0; z <= frames; z++) {
         sprintf(filename, "images/%04d.ppm", z);
         printf("%04d\n", z);
 	mndl(WIDTH, HEIGHT, XCENTER, YCENTER, pow(10, zoom), max_loop, filename);
